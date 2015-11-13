@@ -22,10 +22,10 @@ namespace StudentWebApi.Controllers
         private UserAccountService<CustomUserAccount> userAccountService;
 
         public StudentsController(UserAccountService<CustomUserAccount> userAccountService)
-       {
-           db = new CustomDb();
-           this.userAccountService = userAccountService;
-       }
+        {
+            db = new CustomDb();
+            this.userAccountService = userAccountService;
+        }
 
         // GET: api/Students
         public IQueryable<Student> GetStudents()
@@ -83,32 +83,30 @@ namespace StudentWebApi.Controllers
 
         // POST: api/Students
         [Route("api/students/create")]
-        [ResponseType(typeof(Student))]        
+        [ResponseType(typeof(Student))]
         public IHttpActionResult PostStudent(RegisterInputModel model)
         {
-            var account = (UserAccount)null;
-            try
-            {
-                account = this.userAccountService.CreateAccount(model.Username, model.Password, model.Email);
-            }
-            catch (ValidationException vex)
-            {
-                throw vex;
-            }
-
             Student student = new Student();
-
-            student.FirstName = model.FirstName;
-            student.LastName = model.LastName;
-            student.UserAccountId  = account.ID;
 
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Students.Add(student);
-            db.SaveChanges();
+            try
+            {
+                var account = this.userAccountService.CreateAccount(model.Username, model.Password, model.Email);
+                var findacc = db.Users.Find(account.Key);
+                student.FirstName = model.FirstName;
+                student.LastName = model.LastName;
+                student.UserAccount = findacc;
+                db.Students.Add(student);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
             return CreatedAtRoute("DefaultApi", new { id = student.StudentId }, student);
         }

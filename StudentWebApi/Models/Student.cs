@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using BrockAllen.MembershipReboot;
+using BrockAllen.MembershipReboot.Relational;
+using StudentWebApi.Entities;
 
 namespace StudentWebApi.Models
 {
@@ -16,7 +18,7 @@ namespace StudentWebApi.Models
         public String FirstName { get; set; }
         [Required] 
         public String LastName { get; set; }
-        public Guid UserAccountId { get; set; }
+        [Required]
         public UserAccount UserAccount { get; set; }
     }
 }
