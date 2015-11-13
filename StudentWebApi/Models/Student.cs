@@ -16,7 +16,7 @@ namespace StudentWebApi.Models
         public String FirstName { get; set; }
         [Required] 
         public String LastName { get; set; }
-        [Required]
+        public Guid UserAccountId { get; set; }
         public UserAccount UserAccount { get; set; }
     }
 }

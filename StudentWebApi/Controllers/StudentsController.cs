@@ -9,12 +9,23 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using StudentWebApi.Models;
+using StudentWebApi.Context;
+using BrockAllen.MembershipReboot;
+using System.ComponentModel.DataAnnotations;
+using StudentWebApi.Entities;
 
 namespace StudentWebApi.Controllers
 {
     public class StudentsController : ApiController
     {
-        private StudentContext db = new StudentContext();
+        private CustomDb db;
+        private UserAccountService<CustomUserAccount> userAccountService;
+
+        public StudentsController(UserAccountService<CustomUserAccount> userAccountService)
+       {
+           db = new CustomDb();
+           this.userAccountService = userAccountService;
+       }
 
         // GET: api/Students
         public IQueryable<Student> GetStudents()
@@ -71,18 +82,35 @@ namespace StudentWebApi.Controllers
         }
 
         // POST: api/Students
-        [ResponseType(typeof(Student))]
-        public IHttpActionResult PostStudent(Student Student)
+        [Route("api/students/create")]
+        [ResponseType(typeof(Student))]        
+        public IHttpActionResult PostStudent(RegisterInputModel model)
         {
+            var account = (UserAccount)null;
+            try
+            {
+                account = this.userAccountService.CreateAccount(model.Username, model.Password, model.Email);
+            }
+            catch (ValidationException vex)
+            {
+                throw vex;
+            }
+
+            Student student = new Student();
+
+            student.FirstName = model.FirstName;
+            student.LastName = model.LastName;
+            student.UserAccountId  = account.ID;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Students.Add(Student);
+            db.Students.Add(student);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = Student.StudentId }, Student);
+            return CreatedAtRoute("DefaultApi", new { id = student.StudentId }, student);
         }
 
         // DELETE: api/Students/5
