@@ -13,7 +13,7 @@ namespace StudentWebApi.Context
     public class CustomDb : MembershipRebootDbContext<CustomUserAccount>
     {
         public CustomDb()
-            : base("MyIdentityDb")
+            : base("Xyz")
         {
         }
 

@@ -13,13 +13,20 @@ using StudentWebApi.Context;
 using BrockAllen.MembershipReboot;
 using System.ComponentModel.DataAnnotations;
 using StudentWebApi.Entities;
+using System.Web.Http.Cors;
 
 namespace StudentWebApi.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class StudentsController : ApiController
     {
         private CustomDb db;
         private UserAccountService<CustomUserAccount> userAccountService;
+
+        public StudentsController()
+        {
+            db = new CustomDb();
+        }
 
         public StudentsController(UserAccountService<CustomUserAccount> userAccountService)
         {
@@ -28,12 +35,16 @@ namespace StudentWebApi.Controllers
         }
 
         // GET: api/Students
-        public IQueryable<Student> GetStudents()
+        [Authorize]
+        [Route("api/students")]
+        public List<Student> GetStudents()
         {
-            return db.Students;
+            return db.Students.ToList();
         }
 
         // GET: api/Students/5
+        [Authorize]
+        [Route("api/students/get/{id}")]
         [ResponseType(typeof(Student))]
         public IHttpActionResult GetStudent(int id)
         {
@@ -47,6 +58,8 @@ namespace StudentWebApi.Controllers
         }
 
         // PUT: api/Students/5
+        [Authorize]
+        [Route("api/students/update/{id}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutStudent(int id, Student Student)
         {
@@ -108,10 +121,12 @@ namespace StudentWebApi.Controllers
                 throw ex;
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = student.StudentId }, student);
+            return Ok(student.StudentId);
         }
 
         // DELETE: api/Students/5
+        [Authorize]
+        [Route("api/students/delete/{id}")]
         [ResponseType(typeof(Student))]
         public IHttpActionResult DeleteStudent(int id)
         {

@@ -6,10 +6,10 @@ using System.Web;
 using BrockAllen.MembershipReboot;
 using BrockAllen.MembershipReboot.Relational;
 using StudentWebApi.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StudentWebApi.Models
 {
-
     public class Student
     {
         [Key]
@@ -19,6 +19,6 @@ namespace StudentWebApi.Models
         [Required] 
         public String LastName { get; set; }
         [Required]
-        public UserAccount UserAccount { get; set; }
+        public virtual CustomUserAccount UserAccount { get; set; }
     }
 }
