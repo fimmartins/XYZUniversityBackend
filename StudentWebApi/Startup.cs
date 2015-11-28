@@ -3,6 +3,8 @@ using Microsoft.Owin;
 using Owin;
 using System.Web.Http;
 using IdentityServer3.AccessTokenValidation;
+using System.IdentityModel.Tokens;
+using System.Collections.Generic;
 
 [assembly: OwinStartup(typeof(StudentWebApi.Startup))]
 
@@ -14,20 +16,18 @@ namespace StudentWebApi
         {
 
             #region authentication part
+            JwtSecurityTokenHandler.InboundClaimTypeMap = new Dictionary<string, string>();
 
             app.UseIdentityServerBearerTokenAuthentication(new IdentityServerBearerTokenAuthenticationOptions
             {
                 Authority = "https://localhost:44333/core",
-                RequiredScopes = new[] { "implicit" }
+                RequiredScopes = new[] { "webApi" }
             });
 
             #endregion
 
             var config = new HttpConfiguration();
             config.MapHttpAttributeRoutes();
-
-            config.EnableCors();
-
             app.UseWebApi(config);
         }
     }

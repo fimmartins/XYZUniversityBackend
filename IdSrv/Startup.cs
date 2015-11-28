@@ -5,6 +5,8 @@ using IdSvr;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.Facebook;
 using Microsoft.Owin.Security.Twitter;
+using IdentityServer3.Core.Logging;
+using Serilog;
 
 namespace IdSrv
 {
@@ -12,6 +14,14 @@ namespace IdSrv
     {
         public void Configuration(IAppBuilder app)
         {
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .WriteTo.Trace()
+            .CreateLogger();
+
+            Log.Debug("starting log.  do not remove this line.");
+            LogProvider.GetLogger(typeof(Startup)).Log(LogLevel.Debug, () => "starting up");
+
             app.Map("/core", core =>
             {
                 var idSvrFactory = Factory.Configure();

@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdSrv", "IdSrv\IdSrv.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentWebApi", "StudentWebApi\StudentWebApi.csproj", "{CCAC79C3-EBC2-47A2-BAE0-B4E861FEE545}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseWebApi", "CourseWebApi\CourseWebApi.csproj", "{D4E87352-3B3F-43EA-9869-AD9F112DFFEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XyzWeb", "XyzWeb\XyzWeb.csproj", "{EE9D3345-46BA-497F-86BE-8BB10A5C072E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{CCAC79C3-EBC2-47A2-BAE0-B4E861FEE545}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCAC79C3-EBC2-47A2-BAE0-B4E861FEE545}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCAC79C3-EBC2-47A2-BAE0-B4E861FEE545}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4E87352-3B3F-43EA-9869-AD9F112DFFEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4E87352-3B3F-43EA-9869-AD9F112DFFEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4E87352-3B3F-43EA-9869-AD9F112DFFEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4E87352-3B3F-43EA-9869-AD9F112DFFEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE9D3345-46BA-497F-86BE-8BB10A5C072E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE9D3345-46BA-497F-86BE-8BB10A5C072E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE9D3345-46BA-497F-86BE-8BB10A5C072E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE9D3345-46BA-497F-86BE-8BB10A5C072E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

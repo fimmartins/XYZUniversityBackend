@@ -7,6 +7,7 @@ using BrockAllen.MembershipReboot;
 using BrockAllen.MembershipReboot.Relational;
 using StudentWebApi.Entities;
 using System.ComponentModel.DataAnnotations.Schema;
+using CourseWebApi.Models;
 
 namespace StudentWebApi.Models
 {
@@ -20,5 +21,7 @@ namespace StudentWebApi.Models
         public String LastName { get; set; }
         [Required]
         public virtual CustomUserAccount UserAccount { get; set; }
+        [Required]
+        public virtual Courses Course { get; set; }
     }
 }

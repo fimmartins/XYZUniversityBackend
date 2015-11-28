@@ -17,7 +17,7 @@ using System.Web.Http.Cors;
 
 namespace StudentWebApi.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [Authorize]
     public class StudentsController : ApiController
     {
         private CustomDb db;
@@ -32,19 +32,29 @@ namespace StudentWebApi.Controllers
         {
             db = new CustomDb();
             this.userAccountService = userAccountService;
+            try
+            {
+                var findacc = db.Users.Find(1); //find admin user
+                if (findacc == null)
+                {
+                    //add admin user
+                    var acc = this.userAccountService.CreateAccount("admin", "adminx", "admin@xyz.com");
+                    this.userAccountService.AddClaim(acc.ID, "roles", "admin");
+                }
+            }
+            catch (Exception e)
+            {
+                //admin exist
+            }
         }
 
         // GET: api/Students
-        [Authorize]
-        [Route("api/students")]
         public List<Student> GetStudents()
         {
             return db.Students.ToList();
         }
 
         // GET: api/Students/5
-        [Authorize]
-        [Route("api/students/get/{id}")]
         [ResponseType(typeof(Student))]
         public IHttpActionResult GetStudent(int id)
         {
@@ -58,8 +68,6 @@ namespace StudentWebApi.Controllers
         }
 
         // PUT: api/Students/5
-        [Authorize]
-        [Route("api/students/update/{id}")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutStudent(int id, Student Student)
         {
@@ -95,7 +103,6 @@ namespace StudentWebApi.Controllers
         }
 
         // POST: api/Students
-        [Route("api/students/create")]
         [ResponseType(typeof(Student))]
         public IHttpActionResult PostStudent(RegisterInputModel model)
         {
@@ -125,8 +132,6 @@ namespace StudentWebApi.Controllers
         }
 
         // DELETE: api/Students/5
-        [Authorize]
-        [Route("api/students/delete/{id}")]
         [ResponseType(typeof(Student))]
         public IHttpActionResult DeleteStudent(int id)
         {
