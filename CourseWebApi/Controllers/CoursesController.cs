@@ -11,10 +11,10 @@ using System.Web.Http.Description;
 using CourseWebApi.Context;
 using CourseWebApi.Models;
 using System.Web.Http.Cors;
+using System.Security.Claims;
 
 namespace CourseWebApi.Controllers
 {
-    [Authorize]
     public class CoursesController : ApiController
     {
         private CoursesDbContext db = new CoursesDbContext();
@@ -26,6 +26,7 @@ namespace CourseWebApi.Controllers
         }
 
         // GET: api/Courses/5
+        [Authorize]
         [ResponseType(typeof(Courses))]
         public IHttpActionResult GetCourses(int id)
         {
@@ -39,6 +40,7 @@ namespace CourseWebApi.Controllers
         }
 
         // PUT: api/Courses/5
+        [Authorize]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutCourses(int id, Courses courses)
         {
@@ -74,6 +76,8 @@ namespace CourseWebApi.Controllers
         }
 
         // POST: api/Courses
+        [Route("api/courses/create")]
+        [Authorize(Roles = "Admin,RoleA")]
         [ResponseType(typeof(Courses))]
         public IHttpActionResult PostCourses(Courses courses)
         {
@@ -85,10 +89,11 @@ namespace CourseWebApi.Controllers
             db.Courses.Add(courses);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = courses.CourseId }, courses);
+            return Ok(courses);
         }
 
         // DELETE: api/Courses/5
+        [Authorize]
         [ResponseType(typeof(Courses))]
         public IHttpActionResult DeleteCourses(int id)
         {

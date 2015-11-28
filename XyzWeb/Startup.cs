@@ -1,4 +1,6 @@
-﻿using Microsoft.Owin;
+﻿using IdentityServer3.Core;
+using Microsoft.Owin;
+using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OpenIdConnect;
 using Owin;
@@ -27,7 +29,7 @@ namespace XyzWeb
                 Authority = "https://localhost:44333/core/",
                 RedirectUri = "http://localhost:10071/",
                 ResponseType = "id_token token",
-                Scope = "openid email webApi",
+                Scope = "openid profile webApi",
 
                 SignInAsAuthenticationType = "Cookies",
 
@@ -35,6 +37,7 @@ namespace XyzWeb
                 {
                     SecurityTokenValidated = async n =>
                     {
+                        var id = n.AuthenticationTicket.Identity;
                         var token = n.ProtocolMessage.AccessToken;
 
                         // persist access token in cookie

@@ -14,10 +14,10 @@ using BrockAllen.MembershipReboot;
 using System.ComponentModel.DataAnnotations;
 using StudentWebApi.Entities;
 using System.Web.Http.Cors;
+using IdentityServer3.Core;
 
 namespace StudentWebApi.Controllers
 {
-    [Authorize]
     public class StudentsController : ApiController
     {
         private CustomDb db;
@@ -39,7 +39,7 @@ namespace StudentWebApi.Controllers
                 {
                     //add admin user
                     var acc = this.userAccountService.CreateAccount("admin", "adminx", "admin@xyz.com");
-                    this.userAccountService.AddClaim(acc.ID, "roles", "admin");
+                    this.userAccountService.AddClaim(acc.ID, Constants.ClaimTypes.Role, "Admin");
                 }
             }
             catch (Exception e)
@@ -49,12 +49,14 @@ namespace StudentWebApi.Controllers
         }
 
         // GET: api/Students
+        [Authorize]
         public List<Student> GetStudents()
         {
             return db.Students.ToList();
         }
 
         // GET: api/Students/5
+        [Authorize]
         [ResponseType(typeof(Student))]
         public IHttpActionResult GetStudent(int id)
         {
@@ -68,6 +70,7 @@ namespace StudentWebApi.Controllers
         }
 
         // PUT: api/Students/5
+        [Authorize]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutStudent(int id, Student Student)
         {
@@ -103,7 +106,6 @@ namespace StudentWebApi.Controllers
         }
 
         // POST: api/Students
-        [ResponseType(typeof(Student))]
         public IHttpActionResult PostStudent(RegisterInputModel model)
         {
             Student student = new Student();
@@ -132,6 +134,7 @@ namespace StudentWebApi.Controllers
         }
 
         // DELETE: api/Students/5
+        [Authorize]
         [ResponseType(typeof(Student))]
         public IHttpActionResult DeleteStudent(int id)
         {
