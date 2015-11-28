@@ -12,6 +12,7 @@ namespace StudentWebApi
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
 
             // Web API routes
             config.MapHttpAttributeRoutes();
@@ -23,8 +24,6 @@ namespace StudentWebApi
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-
-            //config.Formatters.Add(new BrowserJsonFormatter());
         }
     }
 }

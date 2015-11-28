@@ -1,4 +1,7 @@
-﻿using System.Web.Http;
+﻿using Microsoft.Owin.Security.Jwt;
+using Microsoft.Owin.Security.OAuth;
+using System.IdentityModel.Tokens;
+using System.Web.Http;
 using System.Web.Http.Cors;
 
 namespace CourseWebApi
@@ -17,7 +20,7 @@ namespace CourseWebApi
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "{controller}",
+                routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
         }

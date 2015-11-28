@@ -5,8 +5,10 @@ using System.Web.Http;
 using IdentityServer3.AccessTokenValidation;
 using System.IdentityModel.Tokens;
 using System.Collections.Generic;
+using Microsoft.Owin.Security.Jwt;
+using Microsoft.Owin.Security.OAuth;
 
-[assembly: OwinStartup(typeof(CourseWebApi.Startup))]
+[assembly: OwinStartup("CourseStartup", typeof(CourseWebApi.Startup))]
 
 namespace CourseWebApi
 {

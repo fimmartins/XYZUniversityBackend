@@ -22,6 +22,11 @@ namespace XyzWeb.Controllers
             return View("Resource");
         }
 
+        public ActionResult CoursesView()
+        {
+            return View("Courses");
+        }
+
         [Authorize]
         public async Task<ActionResult> Resource()
         {
@@ -54,7 +59,7 @@ namespace XyzWeb.Controllers
             var client = new HttpClient();
             client.SetBearerToken(token);
 
-            HttpResponseMessage response = await client.GetAsync("http://localhost:10072/courses");
+            HttpResponseMessage response = await client.GetAsync("http://localhost:10070/api/students");
 
             return await response.Content.ReadAsStringAsync();
         }
@@ -62,6 +67,13 @@ namespace XyzWeb.Controllers
         public ActionResult CheckAuthenticated()
         {
             return View();
+        }
+
+        [Authorize]
+        public ActionResult Login()
+        {
+            Request.GetOwinContext().Authentication.SignIn();
+            return Redirect("/");
         }
 
         public ActionResult Logout()

@@ -6,7 +6,7 @@ using IdentityServer3.AccessTokenValidation;
 using System.IdentityModel.Tokens;
 using System.Collections.Generic;
 
-[assembly: OwinStartup(typeof(StudentWebApi.Startup))]
+[assembly: OwinStartup("StudentStartup", typeof(StudentWebApi.Startup))]
 
 namespace StudentWebApi
 {

@@ -16,8 +16,14 @@ namespace IdSrv.Config
                     Enabled = true,
                     Name = "webApi",
                     Description = "Access Web Api",
-                    Type = ScopeType.Resource
+                    Type = ScopeType.Resource,
+                    Claims = new List<ScopeClaim>
+                    {
+                        new ScopeClaim(Constants.ClaimTypes.Name),
+                        new ScopeClaim(Constants.ClaimTypes.Role)
+                    }
                 }
+               
             };
 
             scopes.AddRange(StandardScopes.All);
