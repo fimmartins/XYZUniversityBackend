@@ -1,12 +1,11 @@
-﻿using CourseWebApi.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace StudentWebApi.Models
+namespace XyzWeb.Models
 {
-    public class RegisterInputModel
+    public class Student
     {
         public string Username { get; set; }
         public string FirstName { get; set; }
@@ -14,6 +13,6 @@ namespace StudentWebApi.Models
         public string Email { get; set; }
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
-        public Courses Course { get; set; }
+        public Course Course { get; set; }
     }
 }

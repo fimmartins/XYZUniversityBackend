@@ -7,6 +7,7 @@ using System.IdentityModel.Tokens;
 using System.Collections.Generic;
 using Microsoft.Owin.Security.Jwt;
 using Microsoft.Owin.Security.OAuth;
+using Thinktecture.IdentityModel.Owin.ResourceAuthorization;
 
 [assembly: OwinStartup("CourseStartup", typeof(CourseWebApi.Startup))]
 
@@ -21,7 +22,7 @@ namespace CourseWebApi
             app.UseIdentityServerBearerTokenAuthentication(new IdentityServerBearerTokenAuthenticationOptions
             {
                 Authority = "https://localhost:44333/core",
-                RequiredScopes = new[] { "webApi" }
+                RequiredScopes = new[] { "roles" }
             });
 
             var config = new HttpConfiguration();

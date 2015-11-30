@@ -7,6 +7,7 @@ using System.Web;
 using System.Data.Entity;
 using StudentWebApi.Entities;
 using StudentWebApi.Models;
+using CourseWebApi.Models;
 
 namespace StudentWebApi.Context
 {
@@ -18,6 +19,7 @@ namespace StudentWebApi.Context
         }
 
         public System.Data.Entity.DbSet<Student> Students { get; set; }
+        public System.Data.Entity.DbSet<Courses> Courses { get; set; }
     }
 
     public class CustomUserAccountRepository : DbContextUserAccountRepository<CustomDb, CustomUserAccount>

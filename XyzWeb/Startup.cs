@@ -4,6 +4,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OpenIdConnect;
 using Owin;
+using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens;
 using System.Security.Claims;
@@ -29,7 +30,7 @@ namespace XyzWeb
                 Authority = "https://localhost:44333/core/",
                 RedirectUri = "http://localhost:10071/",
                 ResponseType = "id_token token",
-                Scope = "openid profile webApi",
+                Scope = "openid profile roles webApi",
 
                 SignInAsAuthenticationType = "Cookies",
 
@@ -37,14 +38,17 @@ namespace XyzWeb
                 {
                     SecurityTokenValidated = async n =>
                     {
-                        var id = n.AuthenticationTicket.Identity;
+                        var identity = n.AuthenticationTicket.Identity;
                         var token = n.ProtocolMessage.AccessToken;
+                        var roles = identity.FindAll("role");
 
                         // persist access token in cookie
                         if (!string.IsNullOrEmpty(token))
                         {
                             n.AuthenticationTicket.Identity.AddClaim(
                                 new Claim("access_token", token));
+                            n.AuthenticationTicket.Identity.AddClaims(roles);
+                            
                         }
                     }
                 }

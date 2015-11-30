@@ -14,9 +14,17 @@ namespace IdSrv.Config
                 new Scope
                 {
                     Enabled = true,
+                    Name = "roles",
+                    Type = ScopeType.Identity,
+                    IncludeAllClaimsForUser = true
+                },
+                new Scope
+                {
+                    Enabled = true,
                     Name = "webApi",
                     Description = "Access Web Api",
                     Type = ScopeType.Resource,
+                    IncludeAllClaimsForUser = true,
                     Claims = new List<ScopeClaim>
                     {
                         new ScopeClaim(Constants.ClaimTypes.Name),
@@ -27,7 +35,6 @@ namespace IdSrv.Config
             };
 
             scopes.AddRange(StandardScopes.All);
-
             return scopes;
 
         }

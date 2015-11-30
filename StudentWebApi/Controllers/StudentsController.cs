@@ -49,7 +49,7 @@ namespace StudentWebApi.Controllers
         }
 
         // GET: api/Students
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public List<Student> GetStudents()
         {
             return db.Students.ToList();
@@ -58,15 +58,16 @@ namespace StudentWebApi.Controllers
         // GET: api/Students/5
         [Authorize]
         [ResponseType(typeof(Student))]
-        public IHttpActionResult GetStudent(int id)
+        public IHttpActionResult GetStudent(String id)
         {
-            Student Student = db.Students.Find(id);
-            if (Student == null)
+            Guid gId = Guid.Parse(id);
+            var student = db.Students.Where(b => b.UserAccount.ID == gId).FirstOrDefault();
+            if (student == null)
             {
                 return NotFound();
             }
 
-            return Ok(Student);
+            return Ok(student);
         }
 
         // PUT: api/Students/5
@@ -106,27 +107,32 @@ namespace StudentWebApi.Controllers
         }
 
         // POST: api/Students
+        [Route("api/students/create")]
         public IHttpActionResult PostStudent(RegisterInputModel model)
         {
             Student student = new Student();
-
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
+            CustomUserAccount findacc = null;
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
                 var account = this.userAccountService.CreateAccount(model.Username, model.Password, model.Email);
-                var findacc = db.Users.Find(account.Key);
+                findacc = db.Users.Find(account.Key);
+                var findCourse = db.Courses.Find(model.Course.CourseId);
                 student.FirstName = model.FirstName;
                 student.LastName = model.LastName;
                 student.UserAccount = findacc;
+                student.Course = findCourse;
                 db.Students.Add(student);
                 db.SaveChanges();
             }
             catch (Exception ex)
             {
+                if (findacc != null)
+                    db.Users.Remove(findacc);
                 throw ex;
             }
 
