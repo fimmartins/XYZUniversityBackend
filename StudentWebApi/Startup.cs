@@ -21,7 +21,7 @@ namespace StudentWebApi
             app.UseIdentityServerBearerTokenAuthentication(new IdentityServerBearerTokenAuthenticationOptions
             {
                 Authority = "https://localhost:44333/core",
-                RequiredScopes = new[] { "webApi" }
+                RequiredScopes = new[] { "roles" }
             });
 
             #endregion
