@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace MecWebApi.Models
+namespace MECWebApi.Models
 {
     public class MECCourses
     {

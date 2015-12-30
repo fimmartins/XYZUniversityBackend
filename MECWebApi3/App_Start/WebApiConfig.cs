@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 using System.Web.Http.Cors;
 
-namespace MecWebApi
+namespace MECWebApi
 {
     public static class WebApiConfig
     {
@@ -16,7 +13,7 @@ namespace MecWebApi
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            config.EnableCors(new EnableCorsAttribute("http://localhost:10070, http://localhost:10071, http://localhost:10072, http://localhost:21575, http://localhost:37045", "accept, authorization", "GET", "WWW-Authenticate"));
+            config.EnableCors(new EnableCorsAttribute("http://localhost:10071, http://localhost:10072, http://localhost:10070, http://localhost:21575, http://localhost:37045", "accept, authorization", "GET", "WWW-Authenticate"));
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

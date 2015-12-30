@@ -85,7 +85,7 @@ namespace CourseWebApi.Controllers
             mecC.CourseId = course.CourseId;
             mecC.Name = course.Name;
             mecC.Institute = "XYZUniversity";
-            string json = JsonConvert.SerializeObject(course);
+            string json = JsonConvert.SerializeObject(mecC);
             StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = client.PostAsync("http://localhost:10073/api/meccourses/create", content).Result;
 
