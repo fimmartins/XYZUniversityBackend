@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseWebApi", "CourseWebAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XyzWeb", "XyzWeb\XyzWeb.csproj", "{EE9D3345-46BA-497F-86BE-8BB10A5C072E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XYZ.LegadoSVC", "XYZ.LegadoSVC\XYZ.LegadoSVC.csproj", "{0C53DF70-5024-4C3F-9BA7-29D2E6A96339}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{EE9D3345-46BA-497F-86BE-8BB10A5C072E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE9D3345-46BA-497F-86BE-8BB10A5C072E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE9D3345-46BA-497F-86BE-8BB10A5C072E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C53DF70-5024-4C3F-9BA7-29D2E6A96339}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C53DF70-5024-4C3F-9BA7-29D2E6A96339}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C53DF70-5024-4C3F-9BA7-29D2E6A96339}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C53DF70-5024-4C3F-9BA7-29D2E6A96339}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
