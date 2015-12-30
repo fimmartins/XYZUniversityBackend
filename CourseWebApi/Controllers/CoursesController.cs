@@ -12,6 +12,9 @@ using CourseWebApi.Context;
 using CourseWebApi.Models;
 using System.Web.Http.Cors;
 using System.Security.Claims;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace CourseWebApi.Controllers
 {
@@ -75,11 +78,25 @@ namespace CourseWebApi.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        private async Task<String> CallMEC(Courses course)
+        {
+            var client = new HttpClient();
+            var mecC = new MECCourse();
+            mecC.CourseId = course.CourseId;
+            mecC.Name = course.Name;
+            mecC.Institute = "XYZUniversity";
+            string json = JsonConvert.SerializeObject(course);
+            StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = client.PostAsync("http://localhost:10073/api/meccourses/create", content).Result;
+
+            return await response.Content.ReadAsStringAsync();
+        }
+
         // POST: api/Courses
         [Route("api/courses/create")]
         [Authorize(Roles = "Admin,RoleA")]
         [ResponseType(typeof(Courses))]
-        public IHttpActionResult PostCourses(Courses courses)
+        public async Task<IHttpActionResult> PostCourses(Courses courses)
         {
             if (!ModelState.IsValid)
             {
@@ -88,7 +105,8 @@ namespace CourseWebApi.Controllers
 
             db.Courses.Add(courses);
             db.SaveChanges();
-
+            //check result later
+            var result = await CallMEC(courses);
             return Ok(courses);
         }
 
