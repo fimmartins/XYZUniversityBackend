@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseWebApi", "CourseWebAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XyzWeb", "XyzWeb\XyzWeb.csproj", "{EE9D3345-46BA-497F-86BE-8BB10A5C072E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MECWebApi", "MECWebApi\MECWebApi.csproj", "{293E2B7B-49FA-44CD-B3F8-832D1B4B3E6B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{EE9D3345-46BA-497F-86BE-8BB10A5C072E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE9D3345-46BA-497F-86BE-8BB10A5C072E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE9D3345-46BA-497F-86BE-8BB10A5C072E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{293E2B7B-49FA-44CD-B3F8-832D1B4B3E6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{293E2B7B-49FA-44CD-B3F8-832D1B4B3E6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{293E2B7B-49FA-44CD-B3F8-832D1B4B3E6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{293E2B7B-49FA-44CD-B3F8-832D1B4B3E6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
