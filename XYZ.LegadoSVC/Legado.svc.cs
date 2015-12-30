@@ -12,22 +12,15 @@ namespace XYZ.LegadoSVC
 	// NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
 	public class Legado : ILegado
 	{
-		public string GetData(int value)
+		public Componentes BuscarComponentes()
 		{
-			return string.Format("You entered: {0}", value);
-		}
+			Componentes c = new Componentes("ASD - Arquitetura de Software Distribuido", "ASW - Arquitetura de Software Web");
 
-		public CompositeType GetDataUsingDataContract(CompositeType composite)
-		{
-			if (composite == null)
-			{
-				throw new ArgumentNullException("composite");
-			}
-			if (composite.BoolValue)
-			{
-				composite.StringValue += "Suffix";
-			}
-			return composite;
+			c.AddNomes("Felipe Tercio");
+			c.AddNomes("Frederico Martins");
+			c.AddNomes("Pedro Golino");
+
+			return c;
 		}
 	}
 }

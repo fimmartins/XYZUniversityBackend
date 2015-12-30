@@ -14,34 +14,46 @@ namespace XYZ.LegadoSVC
 	{
 
 		[OperationContract]
-		string GetData(int value);
-
-		[OperationContract]
-		CompositeType GetDataUsingDataContract(CompositeType composite);
-
-		// TODO: Add your service operations here
+		Componentes BuscarComponentes();
 	}
 
 
 	// Use a data contract as illustrated in the sample below to add composite types to service operations.
 	[DataContract]
-	public class CompositeType
+	public class Componentes
 	{
-		bool boolValue = true;
-		string stringValue = "Hello ";
+		private List<string> _nomes;
+		private string _curso;
+		private string _materia;
 
-		[DataMember]
-		public bool BoolValue
+		public Componentes(string curso, string materia)
 		{
-			get { return boolValue; }
-			set { boolValue = value; }
+			this._nomes = new List<string>();
+			this._curso = curso;
+			this._materia = materia;
 		}
 
 		[DataMember]
-		public string StringValue
+		public string Curso
 		{
-			get { return stringValue; }
-			set { stringValue = value; }
+			get { return this._curso; }
+		}
+
+		[DataMember]
+		public string Materia
+		{
+			get { return this._materia; }
+		}
+
+		[DataMember]
+		public string[] Nomes
+		{
+			get { return this._nomes.ToArray(); }
+		}
+
+		public void AddNomes(string nome)
+		{
+			this._nomes.Add(nome);
 		}
 	}
 }
