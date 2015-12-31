@@ -1,0 +1,15 @@
+﻿@model XyzWeb.Models.LegadoModel
+
+@{
+    ViewBag.Title = "legado";
+}
+
+
+<h2>@Model.NomeUniversidade</h2>
+
+<ul>
+    @foreach (string item in Model.Componentes)
+    {
+        <li>@item</li>
+    }
+</ul>

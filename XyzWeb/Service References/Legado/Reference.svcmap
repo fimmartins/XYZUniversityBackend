@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a51c50ab-c3fb-4bc6-9a0b-bd611951373d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:9012/Legado.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Legado1.xsd" MetadataType="Schema" ID="b94f9924-60c2-4712-813d-1e422f879587" SourceId="1" SourceUrl="http://localhost:9012/Legado.svc?xsd=xsd1" />
+    <MetadataFile FileName="Legado.wsdl" MetadataType="Wsdl" ID="81564ba2-7106-43db-a0d8-a924266b0544" SourceId="1" SourceUrl="http://localhost:9012/Legado.svc?wsdl" />
+    <MetadataFile FileName="Legado.xsd" MetadataType="Schema" ID="5e3c4efe-46c7-4ab4-9ad3-6606611ee55e" SourceId="1" SourceUrl="http://localhost:9012/Legado.svc?xsd=xsd0" />
+    <MetadataFile FileName="Legado2.xsd" MetadataType="Schema" ID="850139c1-adbf-41ea-b774-85cc3ddc7747" SourceId="1" SourceUrl="http://localhost:9012/Legado.svc?xsd=xsd2" />
+    <MetadataFile FileName="Legado.disco" MetadataType="Disco" ID="b3da7c89-71e1-49eb-86d4-7217a48f602a" SourceId="1" SourceUrl="http://localhost:9012/Legado.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

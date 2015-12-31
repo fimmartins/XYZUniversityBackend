@@ -10,6 +10,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseWebApi", "CourseWebApi\CourseWebApi.csproj", "{D4E87352-3B3F-43EA-9869-AD9F112DFFEA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XyzWeb", "XyzWeb\XyzWeb.csproj", "{EE9D3345-46BA-497F-86BE-8BB10A5C072E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0C53DF70-5024-4C3F-9BA7-29D2E6A96339} = {0C53DF70-5024-4C3F-9BA7-29D2E6A96339}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MecWebApi", "MecWebApi\MecWebApi.csproj", "{12FF64A8-6DBE-4F41-9922-1124C1E31456}"
 EndProject
